@@ -3,8 +3,8 @@
 //
 
 #include "stdafx.h"
-#include "CheckNetCard.h"
-#include "CheckNetCardDlg.h"
+#include "VPNProctor.h"
+#include "VPNProctorDlg.h"
 #include "afxdialogex.h"
 #include <algorithm>
 #include <Wininet.h>
@@ -18,24 +18,24 @@
 
 #define WM_SHOWTASK WM_USER + 32
 
-CCheckNetCardDlg::CCheckNetCardDlg(CWnd* pParent /*=NULL*/)
-	: CDialogEx(CCheckNetCardDlg::IDD, pParent)
+CVPNProctorDlg::CVPNProctorDlg(CWnd* pParent /*=NULL*/)
+	: CDialogEx(CVPNProctorDlg::IDD, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
 
-void CCheckNetCardDlg::DoDataExchange(CDataExchange* pDX)
+void CVPNProctorDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_COMBO_CARDLIST, m_comboList);
 }
 
-BEGIN_MESSAGE_MAP(CCheckNetCardDlg, CDialogEx)
+BEGIN_MESSAGE_MAP(CVPNProctorDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_BN_CLICKED(IDC_BUTTON_TRACER, &CCheckNetCardDlg::OnBnClickedButtonTracer)
-	ON_BN_CLICKED(IDC_BUTTON_OPEN, &CCheckNetCardDlg::OnBnClickedButtonOpen)
-	ON_BN_CLICKED(IDC_BUTTON_CLOSE, &CCheckNetCardDlg::OnBnClickedButtonClose)
+	ON_BN_CLICKED(IDC_BUTTON_TRACER, &CVPNProctorDlg::OnBnClickedButtonTracer)
+	ON_BN_CLICKED(IDC_BUTTON_OPEN, &CVPNProctorDlg::OnBnClickedButtonOpen)
+	ON_BN_CLICKED(IDC_BUTTON_CLOSE, &CVPNProctorDlg::OnBnClickedButtonClose)
 	ON_MESSAGE(WM_SHOWTASK,OnShowTask)
 	ON_WM_SYSCOMMAND()
 END_MESSAGE_MAP()
@@ -45,12 +45,12 @@ CStringArray g_VpnSpecString;
 static DWORD g_yetStatus = 0;
 DWORD WINAPI CheckVPNStatus(LPVOID lpParameter)
 {
-	CCheckNetCardDlg* dlg = (CCheckNetCardDlg*)lpParameter;
+	CVPNProctorDlg* dlg = (CVPNProctorDlg*)lpParameter;
 	DWORD dwConnectStatus = 0;
 
 	GetAdaptersInfo(NULL,&dwConnectStatus);
 
-//	DebugODS(_T("GetAdaptersInfo : %d"),dwConnectStatus);
+	DebugODS(_T("GetAdaptersInfo : %d"),dwConnectStatus);
 
 	if (dwConnectStatus != g_yetStatus)	
 	{
@@ -62,14 +62,14 @@ DWORD WINAPI CheckVPNStatus(LPVOID lpParameter)
 	return 0;
 }
 
-LRESULT CCheckNetCardDlg::OnShowTask(WPARAM wParam,LPARAM lParam)
+LRESULT CVPNProctorDlg::OnShowTask(WPARAM wParam,LPARAM lParam)
 {
 	switch(lParam)
 	{
 	case WM_RBUTTONUP:
  		break;
-	case WM_LBUTTONDBLCLK://双击左键的处理
-		ShowWindow(SW_SHOW);//简单的显示主窗口完事儿
+	case WM_LBUTTONDBLCLK:
+		ShowWindow(SW_SHOW);
 		break; 
 	default: 
 		break;
@@ -77,7 +77,7 @@ LRESULT CCheckNetCardDlg::OnShowTask(WPARAM wParam,LPARAM lParam)
 	return 0;
 } 
 
-void CCheckNetCardDlg::DialogToTray()
+void CVPNProctorDlg::DialogToTray()
 {
 	nid.cbSize = (DWORD)sizeof(NOTIFYICONDATA);
 	nid.hWnd = m_hWnd;
@@ -90,7 +90,7 @@ void CCheckNetCardDlg::DialogToTray()
 	ShowWindow(SW_HIDE);
 }
 
-BOOL CCheckNetCardDlg::OnInitDialog()
+BOOL CVPNProctorDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
@@ -133,7 +133,7 @@ BOOL CCheckNetCardDlg::OnInitDialog()
 	return TRUE; 
 }
 
-void CCheckNetCardDlg::OnPaint()
+void CVPNProctorDlg::OnPaint()
 {
 	if (IsIconic())
 	{
@@ -156,14 +156,14 @@ void CCheckNetCardDlg::OnPaint()
 	}
 }
 
-HCURSOR CCheckNetCardDlg::OnQueryDragIcon()
+HCURSOR CVPNProctorDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
 
 
-void CCheckNetCardDlg::OnBnClickedButtonTracer()
+void CVPNProctorDlg::OnBnClickedButtonTracer()
 {
 	CString strCur = _T("");
 
@@ -194,20 +194,20 @@ void CCheckNetCardDlg::OnBnClickedButtonTracer()
 }
 
 
-void CCheckNetCardDlg::OnBnClickedButtonOpen()
+void CVPNProctorDlg::OnBnClickedButtonOpen()
 {
 	WinNetCard::NetCardStateChange(
 		&m_map[m_comboList.GetCurSel()],true);
 }
 
-void CCheckNetCardDlg::OnBnClickedButtonClose()
+void CVPNProctorDlg::OnBnClickedButtonClose()
 {
 	WinNetCard::NetCardStateChange(
 		&m_map[m_comboList.GetCurSel()],false);
 }
 
 
-BOOL CCheckNetCardDlg::ShowBalloonTip(LPCTSTR szMsg, LPCTSTR szTitle, UINT uTimeout, DWORD dwInfoFlags)
+BOOL CVPNProctorDlg::ShowBalloonTip(LPCTSTR szMsg, LPCTSTR szTitle, UINT uTimeout, DWORD dwInfoFlags)
 {
 	nid.cbSize=sizeof(NOTIFYICONDATA);
 	nid.uFlags = NIF_INFO;
@@ -218,7 +218,7 @@ BOOL CCheckNetCardDlg::ShowBalloonTip(LPCTSTR szMsg, LPCTSTR szTitle, UINT uTime
 	return Shell_NotifyIcon(NIM_MODIFY, &nid);
 }
 
-void CCheckNetCardDlg::OnSysCommand(UINT nID, LPARAM lParam)
+void CVPNProctorDlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
 	CDialogEx::OnSysCommand(nID, lParam);
 	if(nID==SC_MINIMIZE)    

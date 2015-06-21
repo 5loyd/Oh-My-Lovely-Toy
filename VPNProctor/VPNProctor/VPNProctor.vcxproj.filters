@@ -16,20 +16,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
-    <None Include="res\CheckNetCard.rc2">
+    <None Include="res\VPNProctor.rc2">
       <Filter>资源文件</Filter>
     </None>
-    <None Include="res\CheckNetCard.ico">
+    <None Include="res\VPNProctor.ico">
       <Filter>资源文件</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CheckNetCard.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CheckNetCardDlg.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -51,14 +45,14 @@
     <ClInclude Include="tstring.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="VPNProctor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="VPNProctorDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CheckNetCard.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CheckNetCardDlg.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -74,9 +68,15 @@
     <ClCompile Include="tstring.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="VPNProctor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="VPNProctorDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="CheckNetCard.rc">
+    <ResourceCompile Include="VPNProctor.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
   </ItemGroup>

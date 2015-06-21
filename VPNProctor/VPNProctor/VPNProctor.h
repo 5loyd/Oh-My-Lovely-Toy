@@ -15,10 +15,10 @@
 // 有关此类的实现，请参阅 CheckNetCard.cpp
 //
 
-class CCheckNetCardApp : public CWinApp
+class CVPNProctorApp : public CWinApp
 {
 public:
-	CCheckNetCardApp();
+	CVPNProctorApp();
 
 // 重写
 public:
@@ -29,4 +29,4 @@ public:
 	DECLARE_MESSAGE_MAP()
 };
 
-extern CCheckNetCardApp theApp;
+extern CVPNProctorApp theApp;

@@ -9,11 +9,11 @@
 #include "RepeatTask.h"
 
 
-class CCheckNetCardDlg : public CDialogEx
+class CVPNProctorDlg : public CDialogEx
 {
 
 public:
-	CCheckNetCardDlg(CWnd* pParent = NULL);
+	CVPNProctorDlg(CWnd* pParent = NULL);
 	std::map<int,TNetCardStruct> m_map;
 	RepeatTask m_task;
 

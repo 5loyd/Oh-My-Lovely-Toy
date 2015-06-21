@@ -3,8 +3,8 @@
 //
 
 #include "stdafx.h"
-#include "CheckNetCard.h"
-#include "CheckNetCardDlg.h"
+#include "VPNProctor.h"
+#include "VPNProctorDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -13,14 +13,14 @@
 
 // CCheckNetCardApp
 
-BEGIN_MESSAGE_MAP(CCheckNetCardApp, CWinApp)
+BEGIN_MESSAGE_MAP(CVPNProctorApp, CWinApp)
 	ON_COMMAND(ID_HELP, &CWinApp::OnHelp)
 END_MESSAGE_MAP()
 
 
 // CCheckNetCardApp 构造
 
-CCheckNetCardApp::CCheckNetCardApp()
+CVPNProctorApp::CVPNProctorApp()
 {
 	// 支持重新启动管理器
 	m_dwRestartManagerSupportFlags = AFX_RESTART_MANAGER_SUPPORT_RESTART;
@@ -32,12 +32,12 @@ CCheckNetCardApp::CCheckNetCardApp()
 
 // 唯一的一个 CCheckNetCardApp 对象
 
-CCheckNetCardApp theApp;
+CVPNProctorApp theApp;
 
 
 // CCheckNetCardApp 初始化
 
-BOOL CCheckNetCardApp::InitInstance()
+BOOL CVPNProctorApp::InitInstance()
 {
 	// 如果一个运行在 Windows XP 上的应用程序清单指定要
 	// 使用 ComCtl32.dll 版本 6 或更高版本来启用可视化方式，
@@ -67,7 +67,7 @@ BOOL CCheckNetCardApp::InitInstance()
 	// 例如修改为公司或组织名
 	SetRegistryKey(_T("应用程序向导生成的本地应用程序"));
 
-	CCheckNetCardDlg dlg;
+	CVPNProctorDlg dlg;
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();
 	if (nResponse == IDOK)
