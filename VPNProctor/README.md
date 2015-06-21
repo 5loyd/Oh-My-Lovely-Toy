@@ -16,4 +16,4 @@ Description
 
 This is a monitor VPN status tool. When VPN status changed that you selected net-adapter will be closed.
 
-<img src="https://github.com/5loyd/Oh-My-Lovely-Toy/raw/master/guis/vpnproctor.png" width=110px />
+<img src="https://github.com/5loyd/Oh-My-Lovely-Toy/raw/master/guis/vpnproctor.png" width=410px />
